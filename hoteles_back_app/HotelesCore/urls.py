@@ -6,7 +6,8 @@ from django.conf.urls import url
 
 urlpatterns = [
     path("hotels/",HotelListView),
-    path('room_types/',RoomtypeListView),
+    #url(r'^room_types/',RoomtypeListView),
+    url(r'^room_types/(?P<pk>[0-9]+)$',RoomtypeListView),
     path('check_in/',CheckInBooking),
     #url(r'^check_out/(?P<pk>[0-9]+)$',CheckOutBooking)
 ]

@@ -4,6 +4,7 @@ from django.utils.translation import pgettext_lazy
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 # Create your models here.
+
 class Hotel(models.Model):
     id_hotel = models.AutoField(primary_key=True)
     name = models.CharField(max_length= 255)
