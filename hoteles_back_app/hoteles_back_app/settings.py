@@ -36,10 +36,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
-    'dj_rest_auth',
+    #'dj_rest_auth',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
+    #'allauth',
+    #'allauth.account',
     'corsheaders',
     # 'allauth.socialaccount' # si queremos implementar autenticación usando redes sociales
     'django.contrib.admin',
@@ -64,12 +64,12 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
+        #'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
 }
 
