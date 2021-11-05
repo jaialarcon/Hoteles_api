@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     #'dj_rest_auth',
     'django.contrib.sites',
-    #'allauth',
+    'allauth',
     #'allauth.account',
     'corsheaders',
     # 'allauth.socialaccount' # si queremos implementar autenticación usando redes sociales
