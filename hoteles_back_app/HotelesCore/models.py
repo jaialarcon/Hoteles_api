@@ -24,6 +24,12 @@ class Hotel(models.Model):
 class RoomType(models.Model):
     id_room_type = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255,unique=True,verbose_name=pgettext_lazy('RoomType','name'))
+    personas = models.PositiveIntegerField(default=0)
+    cocina = models.PositiveIntegerField(default=0)
+    cama = models.PositiveIntegerField(default=0)
+    wifi = models.BooleanField(default=False)
+    lavanderia = models.BooleanField(default=False)
+    desayuno = models.BooleanField(default=False)
     description = models.TextField(blank=True,verbose_name=pgettext_lazy('RoomType','description'))
     crated_at = models.DateTimeField()
     updated_at = models.DateTimeField()
