@@ -182,3 +182,42 @@ def CheckOutBooking(request,pk):
 
 
         return Response(s_booking_room.data, status=status.HTTP_404_NOT_FOUND)
+
+
+@csrf_exempt
+@api_view(['GET'])
+def roomsAvailablesByHotel(request,pk_hotel,nro_guests):
+    rooms = Room.objects.filter(hotel= pk_hotel)
+    data = []
+    for room in rooms:
+        print("En el for")
+        room_type = room.room_type
+        infoHotelRoom = {
+            "id_hotel": pk_hotel,
+            "id_room": room.id_room,
+            "room_name": room.name,
+            "price_room": room.seats_base,
+            "additional_price_room": room.seats_additional,
+            "room_detail":{
+                "id": room_type.id_room_type,
+                "name": room_type.name,
+                "description": room_type.description,
+                "guests_number": room_type.personas,
+                "breakfast": room_type.desayuno,
+                "wifi": room_type.wifi,
+                "kitchen": room_type.cocina,
+                "beds_number":room_type.cama,
+                "lawndry": room_type.lavanderia
+            }
+
+        }
+        print(infoHotelRoom)
+        print(room_type.personas)
+        print(nro_guests)
+        is_booked= room.booked
+        if room_type.personas >= int(nro_guests) and not is_booked:
+            print("Si")
+            data.append(infoHotelRoom)
+
+    return Response(data,status=status.HTTP_201_CREATED)
+
