@@ -9,6 +9,10 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 
+from django.contrib.auth import get_user_model
+
+
+
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -220,4 +224,29 @@ def roomsAvailablesByHotel(request,pk_hotel,nro_guests):
             data.append(infoHotelRoom)
 
     return Response(data,status=status.HTTP_201_CREATED)
+@csrf_exempt
+@api_view(['GET'])
+def UserType(request,pk):
+    user= AbstractUser.objects.get(id=pk)
+    isAdmin = user.is_staff
+    isSuperAdmin = user.is_superuser
+    isClient = False
+    data= []
+    resp= ""
+    if(isAdmin and not isSuperAdmin):
+        resp = "Admin"
+    elif(isSuperAdmin and not isAdmin):
+        resp = "SuperAdmin"
+    elif(not isAdmin and not isSuperAdmin):
+        isClient = True
+        resp = "Client"
+    else:
+        resp = "SuperAdmin"
+    resdata={
+        "user_type": resp,
+        "is_client": isClient
+    }
+    data.append(resdata)
+    return Response(data, status=status.HTTP_201_CREATED)
+
 
