@@ -11,7 +11,7 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 
-
+from .user.models import User
 
 
 @csrf_exempt
@@ -227,7 +227,7 @@ def roomsAvailablesByHotel(request,pk_hotel,nro_guests):
 @csrf_exempt
 @api_view(['GET'])
 def UserType(request,pk):
-    user= AbstractUser.objects.get(id=pk)
+    user= User.objects.get(id=pk)
     isAdmin = user.is_staff
     isSuperAdmin = user.is_superuser
     isClient = False
