@@ -17,12 +17,15 @@ from django.conf.urls import url
 from django.views.generic.base import TemplateView
 from django.contrib import admin
 from django.urls import path, include
-
+from frontcliente import urls as url_fc
+from frontsuperadmin import urls as url_fsa
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('HotelesCore.urls')),
     path('api/authentication/', include('dj_rest_auth.urls')),
     path('api/registration/', include('dj_rest_auth.registration.urls')),
-    url(r'^.*', TemplateView.as_view(template_name="frontcliente/home.html"), name="home"),
-    url(r'^.*', TemplateView.as_view(template_name="frontsuperadmin/home.html"), name="home")
-]
+    path('frontcliente/', include(url_fc)),
+    path('frontsuperadmin/', include(url_fsa)),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
