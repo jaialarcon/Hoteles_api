@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^user_type/(?P<pk>[0-9]+)$',UserType),
     url(r'^check_rooms/(?P<pk_hotel>[0-9]+)/(?P<nro_guests>[0-9]+)$',roomsAvailablesByHotel),
     path('check_in/',CheckInBooking),
+    path('check_out/',CheckOutBooking),
     #url(r'^check_out/(?P<pk>[0-9]+)$',CheckOutBooking)
 ]

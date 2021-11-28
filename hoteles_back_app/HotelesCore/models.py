@@ -85,4 +85,4 @@ class Booking(models.Model):
         verbose_name_plural = pgettext_lazy('Booking', 'Bookings')
 
     def __str__(self):
-        return '{USER} - {ROOM}'.format(USER=self.user.name, ROOM=self.room.name)
+        return '{USER} - {ROOM}'.format(USER=self.user, ROOM=self.room)
