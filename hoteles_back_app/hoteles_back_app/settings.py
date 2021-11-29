@@ -111,7 +111,7 @@ SITE_ID = 1
 
 DATABASES = {
      'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'ENGINE': 'django.db.backends.mysql',
          'NAME': "hotel",
          'USER': "sAdminHoteles",
          'PASSWORD': "Admin-1234",
