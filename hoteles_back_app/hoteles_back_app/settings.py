@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-lhr84mtyo44&mop%!a*1heh90bwy*gssv&n5ctgw30(%k352b@
 DEBUG = True
 
 
-ALLOWED_HOSTS=['*']
+ALLOWED_HOSTS=['*',"http://sadminhoteles.pythonanywhere.com/frontcliente/inicio"]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -113,15 +113,16 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': "hotel",
-         'USER': "postgres",
-         'PASSWORD': "root",
+         'USER': "sAdminHoteles",
+         'PASSWORD': "Admin-1234",
          'HOST': "localhost",
-         'PORT': "5432",
+         'PORT': "3306",
     }
     #'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': BASE_DIR / 'db.sqlite3',
     #}
+
 }
 
 # Password validation
