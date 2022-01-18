@@ -86,3 +86,19 @@ class Booking(models.Model):
 
     def __str__(self):
         return '{USER} - {ROOM}'.format(USER=self.user, ROOM=self.room)
+
+class Image(models.Model):
+    id_image = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    image_field = models.ImageField()
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+    class Meta:
+        # Define the database table
+        db_table = 'images'
+        ordering = ['id_image']
+        verbose_name = pgettext_lazy('image', 'table')
+        verbose_name_plural = pgettext_lazy('Image', 'Images')
+
+    def __str__(self):
+        return '{ID} - {NAME}'.format(ID=self.id_image, NAME=self.name)

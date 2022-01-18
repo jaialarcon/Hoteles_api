@@ -17,3 +17,8 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ('hotel', 'room', 'user','crated_at','updated_at','begin_at','ends_at','ends')
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields= ('id_image','name','image_field')

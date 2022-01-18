@@ -6,4 +6,4 @@ from django.utils.translation import pgettext_lazy
 
 
 class User(AbstractUser):
-    user_type = models.CharField(max_length=255,unique=True,verbose_name=pgettext_lazy('User','user_type'))
+    user_type = models.CharField(max_length=255,unique=False,verbose_name=pgettext_lazy('User','user_type'))

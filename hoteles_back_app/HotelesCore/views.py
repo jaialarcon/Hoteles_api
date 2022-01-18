@@ -14,6 +14,9 @@ from django.contrib.auth import get_user_model
 from .user.models import User
 
 
+from django.shortcuts import render
+from .forms import ImageForm
+from .models import Image
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def HotelListView(request):
@@ -226,4 +229,23 @@ def UserType(request,pk):
     data.append(resdata)
     return Response(data, status=status.HTTP_201_CREATED)
 
+@csrf_exempt
+@api_view(['GET','POST'])
 
+def home_view(request):
+    context = {}
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data.get("name")
+            img = form.cleaned_data.get("image_field")
+            obj = Image.objects.create(
+                                 name = name,
+                                 image_field = img
+                                 )
+            obj.save()
+            print(obj)
+    else:
+        form = ImageForm()
+    context['form']= form
+    return render(request, "home.html", context)
