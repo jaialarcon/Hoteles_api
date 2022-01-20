@@ -278,7 +278,8 @@ def bookings_by_hotel_by_user(request, pk_hotel, pk_usuario):
 def roomtype_by_hotel(request,pk_room):
     room = Room.objects.get(id_room=pk_room)
     room_type = room.room_type
-    serializer = RoomTypeSerializer(room_type,many=True)
+    data = [room_type]
+    serializer = RoomTypeSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
