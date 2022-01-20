@@ -18,7 +18,7 @@ class RoomTypeSerializer(serializers.ModelSerializer):
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ('id_booking','hotel', 'room', 'user','status','begin_at','ends_at','ends')
+        fields = ('id_booking','hotel', 'room', 'user','cedula','status','begin_at','ends_at','ends')
 
 
 class ImageSerializer(serializers.ModelSerializer):

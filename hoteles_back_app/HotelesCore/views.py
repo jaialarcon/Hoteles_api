@@ -269,9 +269,17 @@ def bookings_by_hotel(request, pk_hotel):
 def bookings_by_hotel_by_user(request, pk_hotel, pk_usuario):
     bookings = Booking.objects.filter(hotel=pk_hotel)
     byUser = bookings.filter(user=pk_usuario)
-    data = [res for res in byUser]
-    return Response(data, status=status.HTTP_200_OK)
+    serializer = BookingSerializer(byUser, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
+@csrf_exempt
+@api_view(['GET'])
+
+def roomtype_by_hotel(request,pk_room):
+    room = Room.objects.get(id_room=pk_room)
+    room_type = room.room_type
+    serializer = RoomTypeSerializer(room_type,many=True)
+    return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
 @api_view(['GET', 'POST'])

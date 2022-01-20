@@ -72,6 +72,7 @@ class Booking(models.Model):
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'id_hotel'))
     room = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'room'))
     user = models.IntegerField(default=0,verbose_name='user')
+    cedula= models.CharField(max_length=15)
     status = models.CharField(max_length=255,default='activa',verbose_name=pgettext_lazy('Booking','status'))
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
@@ -107,7 +108,7 @@ class Image(models.Model):
 class PaqueteTuristico(models.Model):
     id_paquete = models.AutoField(primary_key=True)
     paquete = models.CharField(max_length=255)
-    costo = models.DecimalField(decimal_places=2,default=0,max_digits=4)
+    costo = models.DecimalField(decimal_places=10,default=0,max_digits=10)
     cedula = models.CharField(max_length=10, verbose_name=pgettext_lazy('Paquete', 'cedula'))
     cliente = models.CharField(max_length=255)
     crated_at = models.DateTimeField(default=datetime.now())
@@ -129,7 +130,7 @@ class Puntuaciones(models.Model):
     id_puntuacion = models.AutoField(primary_key=True)
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     usuario = models.IntegerField(default=0,verbose_name='user')
-    puntuacion = models.DecimalField(decimal_places=2,default=0,max_digits=4)
+    puntuacion = models.DecimalField(decimal_places=3,default=0,max_digits=4)
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
     class Meta:
@@ -147,7 +148,7 @@ class Publicidad(models.Model):
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     servicio = models.CharField(max_length=255)
     detalle = models.CharField(max_length=255)
-    costo = models.DecimalField(decimal_places=2,default=0,max_digits=4)
+    costo = models.DecimalField(decimal_places=10,default=0,max_digits=10)
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
     publicidad_date = models.DateTimeField(default=datetime.now())
@@ -161,4 +162,4 @@ class Publicidad(models.Model):
         verbose_name_plural = pgettext_lazy('Hoteles', 'Publicidades')
 
     def __str__(self):
-        return '{ID} - {SERVICE}'.format(ID=self.id_public, SERVICIO=self.servicio)
+        return '{ID} - {SERVICE}'.format(ID=self.id_public, SERVICE=self.servicio)
