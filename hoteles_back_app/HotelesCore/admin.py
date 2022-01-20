@@ -5,6 +5,6 @@ admin.site.register(Hotel)
 admin.site.register(Room)
 admin.site.register(RoomType)
 admin.site.register(Booking)
-admin.site.register(Image)
+admin.site.register(Image) # esto es un comment
 
 
