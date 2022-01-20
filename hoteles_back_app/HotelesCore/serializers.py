@@ -8,6 +8,10 @@ class HotelSerializer(serializers.ModelSerializer):
         model = Hotel
         fields = ('id_hotel', 'name','address')
 
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoomType
+        fields = ('id_room', 'hotel', 'name', 'description', 'room_type', 'phone1', 'seats_base', 'seats_additional', 'booked')
 
 class RoomTypeSerializer(serializers.ModelSerializer):
     class Meta:
