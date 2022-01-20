@@ -72,6 +72,7 @@ class Booking(models.Model):
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'id_hotel'))
     room = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'room'))
     user = models.IntegerField(default=0,verbose_name='user')
+    status = models.CharField(max_length=255,verbose_name=pgettext_lazy('Booking','status'))
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
     begin_at = models.DateTimeField(default=datetime.now())
@@ -102,3 +103,62 @@ class Image(models.Model):
 
     def __str__(self):
         return '{ID} - {NAME}'.format(ID=self.id_image, NAME=self.name)
+
+class PaqueteTuristico:
+    id_paquete = models.AutoField(primary_key=True)
+    paquete = models.CharField(max_length=255)
+    costo = models.DecimalField(default=0,verbose_name=pgettext_lazy('Paquete','Precio'))
+    cedula = models.CharField(max_length=10, verbose_name=pgettext_lazy('Paquete', 'cedula'))
+    cliente = models.CharField(max_length=255)
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+    paquete_date = models.DateTimeField(default=datetime.now())
+    paquete_ends_at = models.DateTimeField()
+    estado = models.CharField(max_length=25)
+    class Meta:
+        # Define the database table
+        db_table = 'hotels_paquetes_turisticos'
+        ordering = ['id_paquete']
+        verbose_name = pgettext_lazy('Paquete', 'turistico')
+        verbose_name_plural = pgettext_lazy('Paquetes', 'Turisticos')
+
+    def __str__(self):
+        return '{ID} - {PAQUETE}'.format(ID=self.id_paquete, PAQUETE=self.paquete)
+
+class Puntuaciones:
+    id_puntuacion = models.AutoField(primary_key=True)
+    hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
+    usuario = models.IntegerField(default=0,verbose_name='user')
+    puntuacion = models.DecimalField(default=0,verbose_name=pgettext_lazy('Puntuacion','Puntaje'))
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+    class Meta:
+        # Define the database table
+        db_table = 'hotels_puntuaciones'
+        ordering = ['id_puntuacion']
+        verbose_name = pgettext_lazy('Puntuacion', 'hotel')
+        verbose_name_plural = pgettext_lazy('Puntuaciones', 'hoteles')
+
+    def __str__(self):
+        return '{ID} - {PUNTUACION}'.format(ID=self.id_puntuacion, PUNTUACION=self.puntuacion)
+
+class Publicidad:
+    id_public = models.AutoField(primary_key=True)
+    hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
+    servicio = models.CharField(max_length=255)
+    detalle = models.CharField(max_length=255)
+    costo = models.DecimalField(default=0, verbose_name=pgettext_lazy('Publicidad', 'Precio'))
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+    publicidad_date = models.DateTimeField(default=datetime.now())
+    publicidad_ends_at = models.DateTimeField()
+    estado = models.CharField(max_length=25)
+    class Meta:
+        # Define the database table
+        db_table = 'hotels_publicidad'
+        ordering = ['id_public']
+        verbose_name = pgettext_lazy('Hotel','Publicidad')
+        verbose_name_plural = pgettext_lazy('Hoteles', 'Publicidades')
+
+    def __str__(self):
+        return '{ID} - {SERVICE}'.format(ID=self.id_public, SERVICIO=self.servicio)
