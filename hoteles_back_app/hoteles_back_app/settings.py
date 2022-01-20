@@ -112,7 +112,7 @@ SITE_ID = 1
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': "hotel",
+         'NAME': "hotel2",
          'USER': "sAdminHoteles",
          'PASSWORD': "Admin-1234",
          'HOST': "localhost",
