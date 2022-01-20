@@ -260,7 +260,7 @@ def home_view(request):
 def bookings_by_hotel(request, pk_hotel):
     bookings = Booking.objects.filter(hotel=pk_hotel)
     data = [res for res in bookings]
-    return data
+    return Response(data, status=status.HTTP_200_OK)
 
 
 @csrf_exempt
