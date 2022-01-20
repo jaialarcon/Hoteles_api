@@ -269,7 +269,7 @@ def bookings_by_hotel_by_user(request, pk_hotel, pk_usuario):
     bookings = Booking.objects.filter(hotel=pk_hotel)
     byUser = bookings.filter(user=pk_usuario)
     data = [res for res in byUser]
-    return data
+    return Response(data, status=status.HTTP_200_OK)
 
 
 @csrf_exempt
