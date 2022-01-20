@@ -104,7 +104,7 @@ class Image(models.Model):
     def __str__(self):
         return '{ID} - {NAME}'.format(ID=self.id_image, NAME=self.name)
 
-class PaqueteTuristico:
+class PaqueteTuristico(models.Model):
     id_paquete = models.AutoField(primary_key=True)
     paquete = models.CharField(max_length=255)
     costo = models.DecimalField(default=0,verbose_name=pgettext_lazy('Paquete','Precio'))
@@ -125,7 +125,7 @@ class PaqueteTuristico:
     def __str__(self):
         return '{ID} - {PAQUETE}'.format(ID=self.id_paquete, PAQUETE=self.paquete)
 
-class Puntuaciones:
+class Puntuaciones(models.Model):
     id_puntuacion = models.AutoField(primary_key=True)
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     usuario = models.IntegerField(default=0,verbose_name='user')
@@ -142,7 +142,7 @@ class Puntuaciones:
     def __str__(self):
         return '{ID} - {PUNTUACION}'.format(ID=self.id_puntuacion, PUNTUACION=self.puntuacion)
 
-class Publicidad:
+class Publicidad(models.Model):
     id_public = models.AutoField(primary_key=True)
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     servicio = models.CharField(max_length=255)
