@@ -114,7 +114,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': "sAdminHoteles$hotel",
          'USER': "sAdminHoteles",
-         'PASSWORD': "Admin-1234",
+         'PASSWORD': "1234567$$",
          'HOST': "sAdminHoteles.mysql.pythonanywhere-services.com",
          'PORT': "3306",
     }
