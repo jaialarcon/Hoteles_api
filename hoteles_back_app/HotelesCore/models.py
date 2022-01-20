@@ -107,7 +107,7 @@ class Image(models.Model):
 class PaqueteTuristico(models.Model):
     id_paquete = models.AutoField(primary_key=True)
     paquete = models.CharField(max_length=255)
-    costo = models.DecimalField(default=0,verbose_name=pgettext_lazy('Paquete','Precio'))
+    costo = models.DecimalField(decimal_places=2,default=0)
     cedula = models.CharField(max_length=10, verbose_name=pgettext_lazy('Paquete', 'cedula'))
     cliente = models.CharField(max_length=255)
     crated_at = models.DateTimeField(default=datetime.now())
@@ -129,7 +129,7 @@ class Puntuaciones(models.Model):
     id_puntuacion = models.AutoField(primary_key=True)
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     usuario = models.IntegerField(default=0,verbose_name='user')
-    puntuacion = models.DecimalField(default=0,verbose_name=pgettext_lazy('Puntuacion','Puntaje'))
+    puntuacion = models.DecimalField(decimal_places=2,default=0)
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
     class Meta:
@@ -147,7 +147,7 @@ class Publicidad(models.Model):
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
     servicio = models.CharField(max_length=255)
     detalle = models.CharField(max_length=255)
-    costo = models.DecimalField(default=0, verbose_name=pgettext_lazy('Publicidad', 'Precio'))
+    costo = models.DecimalField(decimal_places=2,default=0)
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
     publicidad_date = models.DateTimeField(default=datetime.now())
