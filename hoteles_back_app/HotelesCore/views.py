@@ -259,8 +259,9 @@ def home_view(request):
 @api_view(['GET'])
 def bookings_by_hotel(request, pk_hotel):
     bookings = Booking.objects.filter(hotel=pk_hotel)
-    data = [res for res in bookings]
-    return Response(data, status=status.HTTP_200_OK)
+    #data = [res for res in bookings]
+    serializer = BookingSerializer(bookings, many=True)
+    return Response(serializer.data,status=status.HTTP_200_OK)
 
 
 @csrf_exempt
