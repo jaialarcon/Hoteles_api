@@ -39,11 +39,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 INSTALLED_APPS = [
     'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
+    #'rest_framework.authtoken',
+    #'dj_rest_auth',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
+    #'allauth',
+    #'allauth.account',
     'corsheaders',
     # 'allauth.socialaccount' # si queremos implementar autenticación usando redes sociales
     'django.contrib.admin',
@@ -69,20 +69,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    ],
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.IsAuthenticated',
+#    ],
+#    'DEFAULT_AUTHENTICATION_CLASSES': [
+#       'rest_framework.authentication.SessionAuthentication',
+#        'rest_framework.authentication.TokenAuthentication',
+#        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+#    ],
+#}
 
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'jwt-auth-token'
-JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token'
+#REST_USE_JWT = True
+#JWT_AUTH_COOKIE = 'jwt-auth-token'
+#JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token'
 ROOT_URLCONF = 'hoteles_back_app.urls'
 
 TEMPLATES = [
