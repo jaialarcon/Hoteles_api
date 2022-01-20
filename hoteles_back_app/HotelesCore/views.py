@@ -286,7 +286,7 @@ def roomtype_by_hotel(request,pk_room):
 @api_view(['GET'])
 
 def room_by_id(request,pk_room):
-    room = Room.objects.get(id_room=pk_room)
+    room = Room.objects.get(id_room= pk_room)
     data = [room]
     serializer = RoomSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
