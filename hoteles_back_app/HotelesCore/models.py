@@ -72,7 +72,7 @@ class Booking(models.Model):
     hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'id_hotel'))
     room = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'room'))
     user = models.IntegerField(default=0,verbose_name='user')
-    cedula= models.CharField(max_length=15)
+    cedula= models.CharField(max_length=15,default='0999999999')
     status = models.CharField(max_length=255,default='activa',verbose_name=pgettext_lazy('Booking','status'))
     crated_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(default=datetime.now())
