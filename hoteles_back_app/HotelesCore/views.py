@@ -66,7 +66,7 @@ def CheckInBooking(request):
     yearE = int(end_booking_date[0])
     monthE = int(end_booking_date[1])
     dayE = int(end_booking_date[2])
-    costo_book = float(request.data["costo"])
+    costo_booking = float(request.data["costo_booking"])
     cedula = request.data['cedula']
     end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
     hotel_id = request.data["id_hotel"]
@@ -93,7 +93,7 @@ def CheckInBooking(request):
                         "room": room,
                         "user": user,
                         "cedula": cedula,
-                        "costo": costo_book,
+                        "costo_booking": costo_booking,
                         "begin_at": begin_date,
                         "ends_at": end_date,
                         "ends": False,
@@ -471,7 +471,7 @@ def update_booking_addcost(request):
             #current_booking.ends_at = end_date
             #current_booking.updated_at = end_date
             #current_booking.status = 'activa'
-            current_booking.costo += seats_additional
+            current_booking.costo_booking += seats_additional
             room = current_booking.room
             room.seats_additional += seats_additional
             room.save(force_update=True)
