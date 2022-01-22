@@ -16,13 +16,13 @@ class RoomSerializer(serializers.ModelSerializer):
 class RoomTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoomType
-        fields = ('id_room_type', 'name', 'personas', 'cocina', 'cama', 'wifi', 'lavanderia', 'desayuno', 'description')
+        fields = ('id_room_type', 'name', 'personas','ninios', 'cocina', 'cama', 'wifi', 'lavanderia', 'desayuno', 'description')
 
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ('id_booking','hotel', 'room', 'user','cedula','status','begin_at','ends_at','ends')
+        fields = ('id_booking','hotel', 'room', 'user','cedula','costo','status','begin_at','ends_at','ends')
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class ImageSerializer(serializers.ModelSerializer):
 class PaqueteSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaqueteTuristico
-        fields = ('id_paquete', 'paquete', 'costo','cedula','cliente','paquete_date','paquete_ends_at','estado')
+        fields = ('id_paquete', 'paquete', 'hotel','costo','personas','cedula','cliente','paquete_date','paquete_ends_at','estado')
 
 
 class PuntuacionesSerializer(serializers.ModelSerializer):

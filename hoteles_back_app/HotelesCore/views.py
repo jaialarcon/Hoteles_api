@@ -66,6 +66,8 @@ def CheckInBooking(request):
     yearE = int(end_booking_date[0])
     monthE = int(end_booking_date[1])
     dayE = int(end_booking_date[2])
+    costo = float(request.data["costo"])
+    cedula = request.data['cedula']
     end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
     hotel_id = request.data["id_hotel"]
     room = request.data["room"]
@@ -90,6 +92,8 @@ def CheckInBooking(request):
                         "hotel": hotel_id,
                         "room": room,
                         "user": user,
+                        "cedula": cedula,
+                        "costo": costo,
                         "begin_at": begin_date,
                         "ends_at": end_date,
                         "ends": False,
@@ -150,6 +154,7 @@ def CheckOutBooking(request):
             current_booking.status = 'terminada'
             room = Room.objects.get(id_room=current_booking.room.id_room)
             room.booked = False
+            room.seats_additional =0
             current_booking.save(force_update=True)
             room.save(force_update=True)
             s_booking_room = {
@@ -305,6 +310,14 @@ def puntuacion(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@csrf_exempt
+@api_view(['GET'])
+
+def puntuacion_by_hotel(request,pk_hotel):
+    puntuacion = Puntuaciones.objects.get(hotel=pk_hotel)
+    data = [puntuacion]
+    serializer = PublicidadSerializer(data,many=True)
+    return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -322,6 +335,16 @@ def paquetesListView(request):
 
 
 @csrf_exempt
+@api_view(['GET'])
+
+def paquetes_by_hotel(request,pk_hotel):
+    paquete = PaqueteTuristico.objects.get(hotel=pk_hotel)
+    data = [paquete]
+    serializer = PublicidadSerializer(data,many=True)
+    return Response(serializer.data, status = status.HTTP_200_OK)
+
+
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def publicidad_list_view(request):
     if request.method == 'GET':
@@ -334,6 +357,14 @@ def publicidad_list_view(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+@csrf_exempt
+@api_view(['GET'])
+
+def publicidad_by_hotel(request,pk_hotel):
+    publicidad = Publicidad.objects.get(hotel=pk_hotel)
+    data = [publicidad]
+    serializer = PublicidadSerializer(data,many=True)
+    return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
 @api_view(['POST'])
@@ -411,3 +442,94 @@ def rooms_by_hotel(request,pk_hotel):
         print("Si")
         data.append(infoHotelRoom)
     return Response(data, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+@api_view(['POST'])
+def update_booking_addcost(request):
+    # hotel_id = request.data['hotel']
+    # room = request.data['room']
+    # user = request.data['user']
+    # my_date = date(2021, 3, 2)
+    id_bookinig = int(request.data["booking"])
+    #end_booking_date = request.data["ends_at"].split(" ")[0].split("-")
+    #yearE = int(end_booking_date[0])
+    #monthE = int(end_booking_date[1])
+    #dayE = int(end_booking_date[2])
+    #end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
+    seats_additional = int(request.data["costo_adicional"])
+    s_booking_room = {
+        "data": {
+            'message': 'Booking does not exists'
+        }
+
+    }
+    if request.method == 'POST':
+        print("Post")
+        if Booking.objects.filter(id_booking=id_bookinig).exists() and not Booking.objects.get(id_booking=id_bookinig).ends:
+            print("Existe booking")
+            current_booking = Booking.objects.get(id_booking=id_bookinig)
+            #current_booking.ends_at = end_date
+            #current_booking.updated_at = end_date
+            #current_booking.status = 'activa'
+            current_booking.costo += seats_additional
+            room = current_booking.room
+            room.seats_additional += seats_additional
+            room.save(force_update=True)
+            current_booking.save(force_update=True)
+            s_booking_room = {
+                "data": {
+                    'message': 'Registro Actualizado correctamente, se ha realizado costo adicional'
+                }
+            }
+        else:
+            s_booking_room = {
+                'data': {
+                    'message': 'error to checkout Booking does not exists'
+                }
+
+            }
+            return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
+
+        return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
+
+@csrf_exempt
+@api_view(['POST'])
+def cancelBooking(request):
+    # hotel_id = request.data['hotel']
+    # room = request.data['room']
+    # user = request.data['user']
+    # my_date = date(2021, 3, 2)
+    id_bookinig = int(request.data["booking"])
+    s_booking_room = {
+        "data": {
+            'message': 'Booking does not exists'
+        }
+
+    }
+    if request.method == 'POST':
+        print("Post")
+        if Booking.objects.filter(id_booking=id_bookinig).exists():
+            print("Existe booking")
+            current_booking = Booking.objects.get(id_booking=id_bookinig)
+            current_booking.ends = True
+            current_booking.status = 'cancelada'
+            room = current_booking.room
+            room.booked = False
+            room.seats_additional =0
+            current_booking.save(force_update=True)
+            room.save(force_update=True)
+            s_booking_room = {
+                "data": {
+                    'message': 'Registro Actualizado correctamente, se ha cancelado correctamente su reserva'
+                }
+            }
+        else:
+            s_booking_room = {
+                'data': {
+                    'message': 'error to checkout Booking does not exists'
+                }
+
+            }
+            return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
+
+        return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
