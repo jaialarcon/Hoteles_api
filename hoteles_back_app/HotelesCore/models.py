@@ -110,7 +110,7 @@ class Image(models.Model):
 class PaqueteTuristico(models.Model):
     id_paquete = models.AutoField(primary_key=True)
     paquete = models.CharField(max_length=255)
-    hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'id_hotel'))
+    hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Booking', 'id_hotel'),default=0)
     costo = models.DecimalField(decimal_places=10,default=0,max_digits=10)
     personas = models.PositiveIntegerField(default=0)
     cedula = models.CharField(max_length=10, verbose_name=pgettext_lazy('Paquete', 'cedula'))
