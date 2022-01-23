@@ -361,9 +361,10 @@ def publicidad_list_view(request):
 @api_view(['GET'])
 
 def publicidad_by_hotel(request,pk_hotel):
-    publicidad = Publicidad.objects.filter(hotel=pk_hotel)
-    data = [publicidad]
-    serializer = PublicidadSerializer(data,many=True)
+    todas = Publicidad.objects.all()
+    por_hotel = todas.filter(hotel= pk_hotel)
+    #data = [publicidad]
+    serializer = PublicidadSerializer(por_hotel,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt

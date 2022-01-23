@@ -46,4 +46,4 @@ class PuntuacionesSerializer(serializers.ModelSerializer):
 class PublicidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publicidad
-        fields = ('id_public', 'hotel', 'servicio','detalle','costo_pub','publicidad_date','publicidad_ends_at','estado')
+        fields = ('id_public',"hotel", 'servicio','detalle','costo_pub','publicidad_date','publicidad_ends_at','estado')
