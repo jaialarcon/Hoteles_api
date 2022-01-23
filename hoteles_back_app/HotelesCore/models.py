@@ -139,6 +139,7 @@ class Puntuaciones(models.Model):
     updated_at = models.DateTimeField(default=datetime.now())
     class Meta:
         # Define the database table
+
         db_table = 'hotels_puntuaciones'
         ordering = ['id_puntuacion']
         verbose_name = pgettext_lazy('Puntuacion', 'hotel')

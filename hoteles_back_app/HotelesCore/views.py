@@ -396,13 +396,14 @@ def update_checkout(request):
             current_booking.save(force_update=True)
             s_booking_room = {
                 "data": {
-                    'message': 'Registro Actualizado correctamente, se ha realizado checkout'
+                    'message': 'Registro Actualizado correctamente, se ha extendido su reserva'
                 }
             }
+            return Response(s_booking_room.get("data"), status=status.HTTP_200_OK)
         else:
             s_booking_room = {
                 'data': {
-                    'message': 'error to checkout Booking does not exists'
+                    'message': 'error to extends Booking does not exists'
                 }
 
             }
@@ -481,6 +482,7 @@ def update_booking_addcost(request):
                     'message': 'Registro Actualizado correctamente, se ha realizado costo adicional'
                 }
             }
+            return Response(s_booking_room.get("data"), status=status.HTTP_200_OK)
         else:
             s_booking_room = {
                 'data': {
@@ -523,6 +525,7 @@ def cancelBooking(request):
                     'message': 'Registro Actualizado correctamente, se ha cancelado correctamente su reserva'
                 }
             }
+            return Response(s_booking_room.get("data"), status=status.HTTP_200_OK)
         else:
             s_booking_room = {
                 'data': {
