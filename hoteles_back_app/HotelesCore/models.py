@@ -178,10 +178,10 @@ class Puntuacion(models.Model):
     updated_at = models.DateTimeField(default=datetime.now())
     class Meta:
         # Define the database table
-        db_table = 'hotels_puntu'
+        db_table = 'Puntuation'
         ordering = ['id_punt']
         verbose_name = pgettext_lazy('Puntuacion', 'hotel')
-        verbose_name_plural = pgettext_lazy('Puntuaciones', 'hoteles')
+        verbose_name_plural = pgettext_lazy('Puntuaciones')
 
     def __str__(self):
         return '{ID} - {PUNTUACION}'.format(ID=self.id_punt, PUNTUACION=self.puntu)
