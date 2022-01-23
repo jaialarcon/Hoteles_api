@@ -180,8 +180,8 @@ class Puntuacion(models.Model):
         # Define the database table
         db_table = 'Puntuation'
         ordering = ['id_punt']
-        verbose_name = pgettext_lazy('Puntuacion', 'hotel')
-        verbose_name_plural = pgettext_lazy('Puntuaciones')
+        verbose_name = pgettext_lazy('Puntuacion', 'score')
+        verbose_name_plural = pgettext_lazy('Puntuaciones','scores')
 
     def __str__(self):
         return '{ID} - {PUNTUACION}'.format(ID=self.id_punt, PUNTUACION=self.puntu)
