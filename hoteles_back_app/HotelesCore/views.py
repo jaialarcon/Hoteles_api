@@ -432,6 +432,7 @@ def rooms_by_hotel(request,pk_hotel):
                 "name": room_type.name,
                 "description": room_type.description,
                 "guests_number": room_type.personas,
+                "ninios": room_type.ninios,
                 "breakfast": room_type.desayuno,
                 "wifi": room_type.wifi,
                 "kitchen": room_type.cocina,
