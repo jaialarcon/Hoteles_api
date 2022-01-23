@@ -314,7 +314,7 @@ def puntuacion(request):
 @api_view(['GET'])
 
 def puntuacion_by_hotel(request,pk_hotel):
-    puntuacion = Puntuacion.objects.get(hotel=pk_hotel)
+    puntuacion = Puntuacion.objects.filter(hotel=pk_hotel)
     data = [puntuacion]
     serializer = PuntuacionesSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
@@ -338,7 +338,7 @@ def paquetesListView(request):
 @api_view(['GET'])
 
 def paquetes_by_hotel(request,pk_hotel):
-    paquete = PaqueteTuristico.objects.get(hotel=pk_hotel)
+    paquete = PaqueteTuristico.objects.filter(hotel=pk_hotel)
     data = [paquete]
     serializer = PaqueteSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
@@ -361,7 +361,7 @@ def publicidad_list_view(request):
 @api_view(['GET'])
 
 def publicidad_by_hotel(request,pk_hotel):
-    publicidad = Publicidad.objects.get(hotel=pk_hotel)
+    publicidad = Publicidad.objects.filter(hotel=pk_hotel)
     data = [publicidad]
     serializer = PublicidadSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
