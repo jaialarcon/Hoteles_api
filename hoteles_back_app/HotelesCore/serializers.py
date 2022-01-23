@@ -39,8 +39,8 @@ class PaqueteSerializer(serializers.ModelSerializer):
 
 class PuntuacionesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Puntuaciones
-        fields = ('id_puntuacion', 'hotel', 'usuario','puntuacion')
+        model = Puntuacion
+        fields = ('id_punt', 'hotel', 'user','puntu')
 
 
 class PublicidadSerializer(serializers.ModelSerializer):

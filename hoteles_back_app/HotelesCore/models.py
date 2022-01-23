@@ -139,7 +139,6 @@ class Puntuaciones(models.Model):
     updated_at = models.DateTimeField(default=datetime.now())
     class Meta:
         # Define the database table
-
         db_table = 'hotels_puntuaciones'
         ordering = ['id_puntuacion']
         verbose_name = pgettext_lazy('Puntuacion', 'hotel')
@@ -168,3 +167,21 @@ class Publicidad(models.Model):
 
     def __str__(self):
         return '{ID} - {SERVICE}'.format(ID=self.id_public, SERVICE=self.servicio)
+
+
+class Puntuacion(models.Model):
+    id_punt = models.AutoField(primary_key=True)
+    hotel = models.ForeignKey('Hotel', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Puntuaciones', 'id_hotel'))
+    user = models.IntegerField(default=0,verbose_name='user')
+    puntu = models.DecimalField(decimal_places=2,default=0,max_digits=4)
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+    class Meta:
+        # Define the database table
+        db_table = 'hotels_puntuaciones'
+        ordering = ['id_punt']
+        verbose_name = pgettext_lazy('Puntuacion', 'hotel')
+        verbose_name_plural = pgettext_lazy('Puntuaciones', 'hoteles')
+
+    def __str__(self):
+        return '{ID} - {PUNTUACION}'.format(ID=self.id_punt, PUNTUACION=self.puntu)
