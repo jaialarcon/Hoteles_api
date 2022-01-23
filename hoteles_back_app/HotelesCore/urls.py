@@ -20,7 +20,7 @@ urlpatterns = [
     path('cancel_booking/',cancelBooking),
     path('check_out/',CheckOutBooking),
     path('extend_booking/',update_checkout),
-    path('images/', home_view ),
+    path('images/', Images ),
     path("puntuacion/",puntuacion),
     path("paquetes_turisticos/",paquetesListView),
     path("publicidad/",publicidad_list_view),
