@@ -32,6 +32,14 @@ def HotelListView(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def Images(request):
+    if request.method == 'GET':
+        model = Image.objects.all()
+        serializer = ImageSerializer(model, many=True)
+        return Response(serializer.data,status = status.HTTP_200_OK)
+
 
 @csrf_exempt
 @api_view(['GET'])
