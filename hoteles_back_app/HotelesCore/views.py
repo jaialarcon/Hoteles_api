@@ -300,7 +300,7 @@ def room_by_id(request,pk_room):
 @api_view(['GET', 'POST'])
 def puntuacion(request):
     if request.method == 'GET':
-        model = Puntuaciones.objects.all()
+        model = Puntuacion.objects.all()
         serializer = PuntuacionesSerializer(model, many=True)
         return Response(serializer.data)
 
@@ -314,7 +314,7 @@ def puntuacion(request):
 @api_view(['GET'])
 
 def puntuacion_by_hotel(request,pk_hotel):
-    puntuacion = Puntuaciones.objects.get(hotel=pk_hotel)
+    puntuacion = Puntuacion.objects.get(hotel=pk_hotel)
     data = [puntuacion]
     serializer = PublicidadSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
