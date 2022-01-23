@@ -339,9 +339,9 @@ def paquetesListView(request):
 @api_view(['GET'])
 
 def paquetes_by_hotel(request,pk_hotel):
-    paquete = PaqueteTuristico.objects.filter(hotel=pk_hotel)
-    data = [paquete]
-    serializer = PaqueteSerializer(data,many=True)
+    todas = PaqueteTuristico.objects.all()
+    paquetes_hotel = todas.filter(hotel=pk_hotel)
+    serializer = PaqueteSerializer(paquetes_hotel,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 
