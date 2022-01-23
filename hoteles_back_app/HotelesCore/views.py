@@ -314,9 +314,10 @@ def puntuacion(request):
 @api_view(['GET'])
 
 def puntuacion_by_hotel(request,pk_hotel):
-    puntuacion = Puntuacion.objects.filter(hotel=pk_hotel)
-    data = [puntuacion]
-    serializer = PuntuacionesSerializer(data,many=True)
+    todas = Puntuacion.objects.all()
+    por_hotel = todas.filter(hotel=pk_hotel)
+    #data = [puntuacion]
+    serializer = PuntuacionesSerializer(por_hotel,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
