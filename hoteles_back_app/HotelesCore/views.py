@@ -316,7 +316,7 @@ def puntuacion(request):
 def puntuacion_by_hotel(request,pk_hotel):
     puntuacion = Puntuacion.objects.get(hotel=pk_hotel)
     data = [puntuacion]
-    serializer = PublicidadSerializer(data,many=True)
+    serializer = PuntuacionesSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 @csrf_exempt
@@ -340,7 +340,7 @@ def paquetesListView(request):
 def paquetes_by_hotel(request,pk_hotel):
     paquete = PaqueteTuristico.objects.get(hotel=pk_hotel)
     data = [paquete]
-    serializer = PublicidadSerializer(data,many=True)
+    serializer = PaqueteSerializer(data,many=True)
     return Response(serializer.data, status = status.HTTP_200_OK)
 
 
