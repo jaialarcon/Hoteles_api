@@ -570,5 +570,5 @@ def detalle_by_booking(request, booking):
     todas = Detalle.objects.all()
     por_reserva = todas.filter(booking=booking)
     # data = [publicidad]s
-    serializer = PublicidadSerializer(por_reserva, many=True)
+    serializer = DetalleSerializer(por_reserva, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
