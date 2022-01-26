@@ -24,7 +24,9 @@ urlpatterns = [
     path("puntuacion/",puntuacion),
     path("paquetes_turisticos/",paquetesListView),
     path("publicidad/",publicidad_list_view),
+    path("detalle/",detalle_list_view),
     url(r'^publicidad_hotel/(?P<pk_hotel>[0-9]+)$',publicidad_by_hotel),
     url(r'^paquete_hotel/(?P<pk_hotel>[0-9]+)$',paquetes_by_hotel),
     url(r'^puntuaciones_hotel/(?P<pk_hotel>[0-9]+)$',puntuacion_by_hotel),
+    url(r'^detalle_reserva/(?P<booking>[0-9]+)$',detalle_by_booking),
 ]

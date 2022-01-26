@@ -185,3 +185,23 @@ class Puntuacion(models.Model):
 
     def __str__(self):
         return '{ID} - {PUNTUACION}'.format(ID=self.id_punt, PUNTUACION=self.puntu)
+
+class Detalle(models.Model):
+    id_detalle = models.AutoField(primary_key=True)
+    booking = models.ForeignKey('Booking', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Detalle', 'booking'))
+    titulo_detalle = models.CharField(max_length= max())
+    detalle = models.CharField(max_length= max())
+    fecha_detalle =models.DateTimeField(default=datetime.now())
+    costo_detalle = models.DecimalField(default=0, max_digits=10, decimal_places=2)
+    crated_at = models.DateTimeField(default=datetime.now())
+    updated_at = models.DateTimeField(default=datetime.now())
+
+    class Meta:
+        # Define the database table
+        db_table = 'Detalle'
+        ordering = ['id_detalle']
+        verbose_name = pgettext_lazy('Detalle', 'detail')
+        verbose_name_plural = pgettext_lazy('Detalles','details')
+
+    def __str__(self):
+        return '{ID} - {TITULO}'.format(ID=self.id_detalle, TITULO=self.titulo_detalle)

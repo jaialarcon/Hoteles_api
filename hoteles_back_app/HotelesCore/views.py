@@ -547,3 +547,28 @@ def cancelBooking(request):
             return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
 
         return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def detalle_list_view(request):
+    if request.method == 'GET':
+        model = Detalle.objects.all()
+        serializer = DetalleSerializer(model, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = DetalleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@csrf_exempt
+@api_view(['GET'])
+def detalle_by_booking(request, booking):
+    todas = Detalle.objects.all()
+    por_reserva = todas.filter(booking=booking)
+    # data = [publicidad]s
+    serializer = PublicidadSerializer(por_reserva, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

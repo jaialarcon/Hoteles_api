@@ -47,3 +47,8 @@ class PublicidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publicidad
         fields = ('id_public',"hotel", 'servicio','detalle','costo_pub','publicidad_date','publicidad_ends_at','estado')
+
+class DetalleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Detalle
+        fields = ('id_detalle',"booking", 'titulo_detalle','detalle','fecha_detalle','costo_detalle')
