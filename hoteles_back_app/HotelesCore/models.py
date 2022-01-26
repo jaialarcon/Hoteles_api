@@ -189,8 +189,8 @@ class Puntuacion(models.Model):
 class Detalle(models.Model):
     id_detalle = models.AutoField(primary_key=True)
     booking = models.ForeignKey('Booking', on_delete=models.PROTECT, verbose_name=pgettext_lazy('Detalle', 'booking'))
-    titulo_detalle = models.CharField(max_length= max())
-    detalle = models.CharField(max_length= max())
+    titulo_detalle = models.CharField(max_length= 255)
+    detalle = models.CharField(max_length= 255)
     fecha_detalle =models.DateTimeField(default=datetime.now())
     costo_detalle = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     crated_at = models.DateTimeField(default=datetime.now())
