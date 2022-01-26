@@ -79,6 +79,7 @@ def CheckInBooking(request):
     nombre = request.data['nombre']
     apellido = request.data['apellido']
     telefono = request.data['telefono']
+    email = request.data['email']
     end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
     hotel_id = request.data["id_hotel"]
     room = request.data["room"]
@@ -107,6 +108,7 @@ def CheckInBooking(request):
                         "nombre": nombre,
                         "apellido": apellido,
                         "telefono": telefono,
+                        "email" : email,
                         "costo_booking": costo_booking,
                         "begin_at": begin_date,
                         "ends_at": end_date,

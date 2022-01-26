@@ -77,6 +77,7 @@ class Booking(models.Model):
     nombre = models.CharField(max_length= 255,default='')
     apellido = models.CharField(max_length=255,default='')
     telefono = models.CharField(max_length=15,default='0999999999')
+    email = models.CharField(max_length=255,default='')
     status = models.CharField(max_length=255,default='activa',verbose_name=pgettext_lazy('Booking','status'))
     costo_booking = models.DecimalField(default=0, max_digits=10, decimal_places=2 )
     crated_at = models.DateTimeField(default=datetime.now())
