@@ -76,6 +76,9 @@ def CheckInBooking(request):
     dayE = int(end_booking_date[2])
     costo_booking = float(request.data["costo_booking"])
     cedula = request.data['cedula']
+    nombre = request.data['nombre']
+    apellido = request.data['apellido']
+    telefono = request.data['telefono']
     end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
     hotel_id = request.data["id_hotel"]
     room = request.data["room"]
@@ -101,6 +104,9 @@ def CheckInBooking(request):
                         "room": room,
                         "user": user,
                         "cedula": cedula,
+                        "nombre": nombre,
+                        "apellido": apellido,
+                        "telefono": telefono,
                         "costo_booking": costo_booking,
                         "begin_at": begin_date,
                         "ends_at": end_date,
