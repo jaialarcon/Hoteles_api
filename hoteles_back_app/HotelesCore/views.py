@@ -580,3 +580,53 @@ def detalle_by_booking(request, booking):
     # data = [publicidad]s
     serializer = DetalleSerializer(por_reserva, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@csrf_exempt
+@api_view(['POST'])
+def update_booking_setcost(request):
+    # hotel_id = request.data['hotel']
+    # room = request.data['room']
+    # user = request.data['user']
+    # my_date = date(2021, 3, 2)
+    id_bookinig = int(request.data["booking"])
+    #end_booking_date = request.data["ends_at"].split(" ")[0].split("-")
+    #yearE = int(end_booking_date[0])
+    #monthE = int(end_booking_date[1])
+    #dayE = int(end_booking_date[2])
+    #end_date = datetime(yearE, monthE, dayE, 0, 0, 0, 0)
+    seats_additional = int(request.data["costo_adicional"])
+    s_booking_room = {
+        "data": {
+            'message': 'Booking does not exists'
+        }
+
+    }
+    if request.method == 'POST':
+        print("Post")
+        if Booking.objects.filter(id_booking=id_bookinig).exists() and not Booking.objects.get(id_booking=id_bookinig).ends:
+            print("Existe booking")
+            current_booking = Booking.objects.get(id_booking=id_bookinig)
+            #current_booking.ends_at = end_date
+            #current_booking.updated_at = end_date
+            #current_booking.status = 'activa'
+            current_booking.costo_booking = seats_additional
+            room = current_booking.room
+            room.seats_additional += seats_additional
+            room.save(force_update=True)
+            current_booking.save(force_update=True)
+            s_booking_room = {
+                "data": {
+                    'message': 'Registro Actualizado correctamente, se ha realizado costo adicional'
+                }
+            }
+            return Response(s_booking_room.get("data"), status=status.HTTP_200_OK)
+        else:
+            s_booking_room = {
+                'data': {
+                    'message': 'error to checkout Booking does not exists'
+                }
+
+            }
+            return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
+
+        return Response(s_booking_room.get("data"), status=status.HTTP_404_NOT_FOUND)
