@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^get_room/(?P<pk_room>[0-9]+)$',room_by_id),
     path('check_in/',CheckInBooking),
     path('booking_cost/',update_booking_addcost),
-    path('booking_setcost/',update_booking_setcost),
+    path('booking_setcosts/',update_booking_setcost),
     path('cancel_booking/',cancelBooking),
     path('check_out/',CheckOutBooking),
     path('extend_booking/',update_checkout),
